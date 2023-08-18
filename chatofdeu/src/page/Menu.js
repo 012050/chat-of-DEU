@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./../css/Menu.css"
 
 function Menu(){
-    let [data, setData] = useState([
+    let [data, setData] = useState([ //식단 데이터
         {restaurant: "행복 기숙사", meal: ["아침", "점심", "저녁"]},
         {restaurant: "효민 기숙사", meal: ["아침", "점심", "저녁"]},
         {restaurant: "수덕전", meal: ["아침", "점심", "저녁"]},
@@ -18,6 +18,12 @@ function Menu(){
     );
 }
 
+/**
+ * 
+ * @param data 식단 데이터
+ * @param i 반복 인덱스
+ * @returns 
+ */
 function MealCard({data, i}){
     return(
         <div className="mealCard">
