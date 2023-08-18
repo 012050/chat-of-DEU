@@ -7,11 +7,21 @@ from translate import trans
 from flask_cors import CORS
 from translator import transl
 
+def build_preflight_response():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    return response
+
+def build_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 app = Flask(__name__)
 
 # 메인 페이지(홈 페이지) 라우팅/ 리퀘스트 방법 GET, POST
-@app.route("/translation/food", methods=['POST'])
+@app.route("/translation/food", methods=['POST', 'OPTIONS'])
 def traslation():
     if request.method == 'OPTIONS': 
         return build_preflight_response()
@@ -80,19 +90,7 @@ def information():
                 build_info[i][1] = tr
     return build_actual_response(jsonify({"build_info":build_info}))
 
-
-def build_preflight_response():
-    response = make_response()
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add('Access-Control-Allow-Headers', "*")
-    response.headers.add('Access-Control-Allow-Methods', "*")
-    return response
-
-def build_actual_response(response):
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
-
-@app.route("/translator",  methods=['POST'])
+@app.route("/translator",  methods=['POST', 'OPTIONS'])
 def translator():
     if request.method == 'OPTIONS': 
         return build_preflight_response()
@@ -103,7 +101,7 @@ def translator():
 
     return build_actual_response(jsonify({"return_txt":return_txt}))
 
-@app.route("/calender", methods=['POST'])
+@app.route("/calender", methods=['POST', 'OPTIONS'])
 def calen():
     if request.method == 'OPTIONS': 
         return build_preflight_response()
