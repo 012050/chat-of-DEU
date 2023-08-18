@@ -22,16 +22,16 @@ function Building(){
 
 
     useEffect(()=>{
-        axios.post('http://minimalist.iptime.org:8080/building/info', {
-            keyword: "ATM",
-            lan_type: "ko"
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        axios.post('http://localhost:5001/building/info', {}, {params:{
+                keyword: "ATM",
+                lan_type: "ko"
+            }})
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     },[select])
 
     const Item = styled(Paper)(({ theme }) => ({

@@ -87,12 +87,15 @@ def school_info(key):
             if p[i][2].find("서점") != -1 or p[i][2].find("복사점") != -1 or p[i][2].find("헌혈의 집") != -1:
                 list.add(p[i][0])
 
+    # final_list = OrderedDict()
     final_list = []
-
+    # cnt = 0
     for i in list:
         for j in number_list:
             if i == j[1]:
-                final_list.append([str(j[0]),  j[1]])
+                # cnt += 1
+                # final_list["{}".format(cnt)] = {"idx" : str(j[0]), "name" : j[1]}
+                final_list.append([str(j[0]), j[1]])
 
     final_list = sorted(final_list, key=lambda x: int(x[0]))
 
@@ -112,4 +115,4 @@ def date_info():
     return temp
 
 if __name__ == "__main__":
-    print(school_info())
+    print(school_info(key="ATM"))
