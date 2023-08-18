@@ -97,21 +97,23 @@ function Menu() {
         { restaurant: "국제관", meal: ["아침", "점심", "저녁"] },
     ])
 
-    // axios.post('http://minimalist.iptime.org:8080/translation/food', {
-    //     data: `${language}`,
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     setData(res.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-
     useEffect(() => {
+        //언어 코드 변경
         const selectedLanguage = restaurantName.findIndex((element => element.country === language))
         setTranslatedData(restaurantName[selectedLanguage])
+
+        //식단 데이터 불러오기
+        axios.post('http://minimalist.iptime.org:8080/translation/food', {}, {params:{
+            data: `${language}`,
+          }})
+          .then((res) => {
+            console.log(res.data);
+            // setData(res.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
     }, [language])
 
     return (
