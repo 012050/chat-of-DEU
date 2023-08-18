@@ -67,6 +67,7 @@ function App() {
         dispatch(setLanguage(lang.code));
         // setLanguage(lang.code)
         const number = languages.findIndex((element => element.country === lang.code))
+        console.log(lang.code);
         setSelectedLanguage(languages[number])
     }
     let theme = createTheme({
