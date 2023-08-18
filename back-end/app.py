@@ -55,7 +55,16 @@ def traslation():
 @app.route("/building/info", methods=['POST'])
 def information():
     keyword = request.form.get('keyword')
-    build_info = school_info(keyword)
+    lan_type = request.form.get('lan_type')
+
+    if lan_type == "ko":
+        build_info = school_info(keyword)
+    else :
+        build_info = school_info(keyword)
+        for i in range(len(build_info)):
+            tr = trans(build_info[i][1], lan_type)
+            build_info[i][1] = tr
+
     return build_info
 
 # debug 모드로 실행
