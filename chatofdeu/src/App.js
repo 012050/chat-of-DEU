@@ -3,7 +3,7 @@ import { Routes, Route, useNavigate, Link } from "react-router-dom";
 
 import "./App.css";
 import Menu from "../src/page/Menu";
-import Facility from "../src/page/Facility";
+import Building from "../src/page/Building";
 
 import { createTheme, Modal, ThemeProvider } from '@mui/material';
 import BottomNavigation from "@mui/material/BottomNavigation";
@@ -92,7 +92,7 @@ function App() {
                 </BottomNavigation>
                 <Routes>
                     <Route path="/" element={<Menu language={language}/>} />
-                    <Route path="/facility" element={<Facility/>} />
+                    <Route path="/building" element={<Building/>} />
                 </Routes>
             </ThemeProvider>
         </div>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./../css/Menu.css"
-
 const restaurantName = [
     {
         country: "KR",
@@ -98,7 +97,12 @@ function Menu(props) {
         </div>
     );
 }
-
+/**
+ * 
+ * @param data 식단 데이터
+ * @param i 반복 인덱스
+ * @returns 
+ */
 function MealCard({ data, i, translatedData }) {
     return (
         <div className="mealCard">
