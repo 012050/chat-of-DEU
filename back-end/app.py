@@ -12,10 +12,7 @@ app = Flask(__name__)
 # 메인 페이지(홈 페이지) 라우팅/ 리퀘스트 방법 GET, POST
 @app.route("/translation/food", methods=['POST'])
 def traslation():
-    if request.form.get('data') != 'ko':
-        lan_type = request.form.get('data')
-    else:
-        lan_type = 'ko'
+    lan_type = request.args.get('data')
 
     data = get_food()
     building = []
@@ -44,12 +41,11 @@ def traslation():
                     lunch = data['lunch_s']
                     dinner = data['dinner']
                     break
+    if lan_type != "ko":
+        breakfast = trans(breakfast, lan_type)
+        lunch = trans(lunch, lan_type)
+        dinner = trans(dinner, lan_type)
 
-    breakfast = trans(breakfast, lan_type)
-    lunch = trans(lunch, lan_type)
-    dinner = trans(dinner, lan_type)
-
-    # send_list = []
     restaurant['happy'] = [breakfast, lunch, dinner]
 
     return jsonify(restaurant)
@@ -90,4 +86,4 @@ def build_actual_response(response):
 
 # debug 모드로 실행
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5001)
+    app.run(debug=True, host="0.0.0.0", port=8080)
