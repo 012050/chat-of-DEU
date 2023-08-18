@@ -22,10 +22,10 @@ function MealCard({data, i}){
     return(
         <div className="mealCard">
             <div className="mealDetail">
-                <h4>{data[i].restaurant}</h4>
-                <p>아침 : {data[i].meal[0]}</p>
-                <p>점심 : {data[i].meal[1]}</p>
-                <p>저녁 : {data[i].meal[2]}</p>
+                <h3>{data[i].restaurant}</h3>
+                <p><b>아침</b> : {data[i].meal[0]}</p>
+                <p><b>점심</b> : {data[i].meal[1]}</p>
+                <p><b>저녁</b> : {data[i].meal[2]}</p>
             </div>
         </div>
     )
