@@ -10,7 +10,10 @@ app = Flask(__name__)
 # 메인 페이지(홈 페이지) 라우팅/ 리퀘스트 방법 GET, POST
 @app.route("/translation/food", methods=['POST'])
 def traslation():
-    lan_type = request.form.get('data')
+    if request.form.get('data') != 'ko':
+        lan_type = request.form.get('data')
+    else:
+        lan_type = 'ko'
 
     data = get_food()
     building = []
@@ -44,6 +47,7 @@ def traslation():
     lunch = trans(lunch, lan_type)
     dinner = trans(dinner, lan_type)
 
+    # send_list = []
     restaurant['happy'] = [breakfast, lunch, dinner]
 
     return jsonify(restaurant)
