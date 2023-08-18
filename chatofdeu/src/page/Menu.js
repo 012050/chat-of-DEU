@@ -8,7 +8,7 @@ import "./../css/Menu.css"
 function Menu() {
     const restaurantName = [
         {
-            country: "kr",
+            country: "ko",
             restaurants: [
                 "행복 기숙사",
                 "효민 기숙사",
@@ -38,7 +38,7 @@ function Menu() {
             ]
         },
         {
-            country: "jp",
+            country: "ja",
             restaurants: [
                 "ヘンボック寮",
                 "ヒョミン寮",

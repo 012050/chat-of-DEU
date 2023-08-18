@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from 'react-redux';
 import "./../css/Building.css"
 
 import { experimentalStyled as styled } from '@mui/material/styles';
@@ -15,7 +16,9 @@ import FormControl from '@mui/material/FormControl';
 function Building(){
     let [select, setSelect] = useState("식당"); //선택 값
     let [data, setData] = useState([]);
-    let [language, setLanguage] = useState("ko"); //언어 값
+    
+    let language = useSelector((state) => state.language.value); //언어 정보
+    let dispatch = useDispatch();
 
     useEffect(()=>{
         axios.post('http://minimalist.iptime.org:8080/building/info', {}, {params:{
@@ -28,7 +31,7 @@ function Building(){
           .catch((error) => {
             console.log(error);
           });
-    },[select])
+    },[select, language])
 
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',

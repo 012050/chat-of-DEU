@@ -33,7 +33,7 @@ function App() {
            
         },
         {
-            country: "jp",
+            country: "ja",
             title:[
                 "学食",
                 "施設情報"

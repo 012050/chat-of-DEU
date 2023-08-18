@@ -4,9 +4,9 @@ import '../css/LanguageToggle.css'
 
 const LanguageToggle = (props) => {
     const langData = [
-        { code: 'kr', tooltip: 'kr', flow: 'down', flag: 'south-korea' },
+        { code: 'ko', tooltip: 'ko', flow: 'down', flag: 'south-korea' },
         { code: 'en', tooltip: 'en', flow: 'down', flag: 'united-kingdom' },
-        { code: 'jp', tooltip: 'jp', flow: 'down', flag: 'japan' },
+        { code: 'ja', tooltip: 'ja', flow: 'down', flag: 'japan' },
         { code: 'vi', tooltip: 'vi', flow: 'down', flag: 'vietnam' },
         { code: 'zh-CN', tooltip: 'zh-CN', flow: 'up', flag: 'china' }
     ];

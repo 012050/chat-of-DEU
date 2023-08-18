@@ -2,7 +2,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 
 let language = createSlice({
   name: 'language',
-  initialState: { value: 'en' },
+  initialState: { value: 'ja' },
   reducers: {
     setLanguage: (state, action) => {
       state.value = action.payload
