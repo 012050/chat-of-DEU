@@ -17,7 +17,8 @@ def traslation():
 
     data = get_food()
     building = []
-    restaurant = {}
+    restaurant = []
+    food_list = ["효민 기숙사", "행복 기숙사", "정보공학관", "수덕전"]
 
     for key in data:
         building.append([key, data[key]])
@@ -41,14 +42,19 @@ def traslation():
                     breakfast = data['breakfast']
                     lunch = data['lunch_s']
                     dinner = data['dinner']
+                    if lan_type != 'ko':
+                        breakfast = trans(breakfast, lan_type)
+                        lunch = trans(lunch, lan_type)
+                        dinner = trans(dinner, lan_type)
                     break
+        else:
+            breakfast = None
+            lunch = None
+            dinner = None
 
-    breakfast = trans(breakfast, lan_type)
-    lunch = trans(lunch, lan_type)
-    dinner = trans(dinner, lan_type)
+        food_list.append([breakfast, lunch, dinner])
 
-    # send_list = []
-    restaurant['happy'] = [breakfast, lunch, dinner]
+    restaurant.append(food_list)
 
     return jsonify(restaurant)
 
