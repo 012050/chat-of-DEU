@@ -1,10 +1,12 @@
+.container { /* 왼쪽 중앙 정렬 */
+    text-align: left;
+    margin-left: 33%;
+    margin-right: 33%;
+}
+
 .title {
-  font-size: 40px;
-  text-align: left;
-  margin-left: 33%;
-  margin-right: 33%;
-  width: 350px;
-  height: 200px;
+    font-size: 40px;
+    width: 350px;
 }
 
 .navBar{
@@ -15,8 +17,9 @@
     height: 7em;
 }
 
+/* 반응형 */
 @media only screen and (max-width: 650px) {
-    .title{
+    .container{
         margin-left: 10px;
     }
 }

@@ -1,6 +1,6 @@
 function Facility(){
     return(
-        <div className="containers">
+        <div className="container">
             <h1>시설 정보</h1>
         </div>
     );

@@ -1,12 +1,9 @@
-import React from "react";
-import "./../css/Menu.css";
-
-function Menu() {
-  return (
-    <div>
-        <h1>학식</h1>
-    </div>
-  );
+function Menu(){
+    return(
+        <div className="container">
+            <h1>식단</h1>
+        </div>
+    );
 }
 
 export default Menu;

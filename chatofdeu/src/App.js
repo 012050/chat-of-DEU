@@ -1,4 +1,4 @@
-    import React from "react";
+    import React, { useState } from "react";
     import { Routes, Route, useNavigate, Link } from "react-router-dom";
 
     import "./App.css";
@@ -9,21 +9,21 @@
     import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 
 function App() {
-    let [value, setValue] = React.useState(0);
-    let navigate = useNavigate();
+    let [nav, setNav] = useState(0);
+    let [lenguage, setLenguage] = useState("ko"); //언어
     
     return (
         <div className="App">
         <div class="header">
-            <div class="title">DF&S</div>
+            <div class="title container">DF&S</div>
         </div>
 
         <BottomNavigation
             className="navBar"
             showLabels
-            value={value}
+            value={nav}
             onChange={(event, newValue) => {
-            setValue(newValue);
+            setNav(newValue);
             }}
         >
             <BottomNavigationAction label="학식" component={Link} to="/" />
