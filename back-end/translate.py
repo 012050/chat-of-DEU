@@ -1,8 +1,7 @@
 import os
-import sys
 import urllib.request
 from dotenv import load_dotenv
-
+import json
 def trans(txt, lan_type):
     load_dotenv()
     client_id = os.environ.get('ClientID')
@@ -21,7 +20,8 @@ def trans(txt, lan_type):
     if(rescode==200):
         response_body = response.read()
         res_txt = response_body.decode('utf-8')
-        print(res_txt)
+        res_txt = json.loads(res_txt)
+        res_txt = res_txt["message"]["result"]["translatedText"]
         return res_txt
     else:
         print("Error Code:" + rescode)
