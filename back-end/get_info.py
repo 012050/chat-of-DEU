@@ -89,20 +89,19 @@ def school_info():
             if p[i][2].find("서점") != -1 or p[i][2].find("복사점") != -1 or p[i][2].find("헌혈의 집") != -1:
                 list.add(p[i][0])
 
-    final_list = OrderedDict()
-
-    cnt = 0;
+    final_list = []
+    semi_list = []
 
     for i in list:
         for j in number_list:
             if i == j[1]:
-                cnt += 1
-                final_list['{}'.format(cnt)] = {"idx" : str(j[0]), "name" : j[1]}
+                final_list.append([str(j[0]) + " " + j[1]])
+                
 
         
     if html_text.status_code == 200:
-        json.dumps(final_list, ensure_ascii=False, indent="\t")
-        return json.dumps(final_list, ensure_ascii=False, indent="\t")
+        # json.dumps(final_list, ensure_ascii=False, indent="\t")
+        return final_list
     else:
         return html_text.status_code
     
