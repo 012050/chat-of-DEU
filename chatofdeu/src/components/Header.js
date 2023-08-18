@@ -3,12 +3,12 @@ import LanguageToggle from './LanguageToggle'
 import '../css/Header.css'
 
 
-const Header = () => {
+const Header = (props) => {
     return (
         <div className='header-container'>
             <div className='header-relative'>
                 <div className='logo'>DF&S</div>
-                <LanguageToggle />
+                <LanguageToggle languageSelection={props.languageSelection} />
             </div>
         </div>
     )
