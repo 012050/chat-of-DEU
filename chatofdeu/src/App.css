@@ -27,6 +27,7 @@
 /* 반응형 */
 @media only screen and (max-width: 650px) {
     .container, .title{
-        margin-left: 10px;
+        margin-left: 5%;
+        margin-right:5%;
     }
 }
