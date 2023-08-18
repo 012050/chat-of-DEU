@@ -94,6 +94,12 @@ function BuildingRadio({select, setSelect}){
     )
 }
 
+/**
+ * 건물 시설 정보 카드
+ * @param i data 반복 인덱스
+ * @param data 건물 시설 정보
+ * @returns 
+ */
 function BuildingCard({i, data}){
     return(
         <div className="mealCard">
