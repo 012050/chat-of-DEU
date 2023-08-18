@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../css/LanguageToggle.css'
 
 
-const LanguageToggle = () => {
+const LanguageToggle = (props) => {
     const langData = [
         { code: 'KR', tooltip: 'KR', flow: 'down', flag: 'south-korea' },
         { code: 'EN', tooltip: 'EN', flow: 'down', flag: 'united-kingdom' },
@@ -16,6 +16,7 @@ const LanguageToggle = () => {
 
     const handleLangSelect = (lang) => {
         setSelectedLang(lang);
+        props.languageSelection(lang)
         const selectedLanguageIndex = langData.findIndex((element) => element.code ===lang.code)
         langData[selectedLanguageIndex]=langData[0]
         langData[0]=lang
@@ -27,6 +28,7 @@ const LanguageToggle = () => {
             }
         }
         setUpdatedLangData(langData)
+
         
     };
 
