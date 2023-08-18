@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import "./../css/Menu.css"
+
 const restaurantName = [
     {
         country: "KR",
@@ -87,6 +89,17 @@ function Menu(props) {
         { restaurant: "정보공학관", meal: ["아침", "점심", "저녁"] },
         { restaurant: "국제관", meal: ["아침", "점심", "저녁"] },
     ])
+    axios.post('http://minimalist.iptime.org:8080/translation/food', {
+        data: "en",
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
     useEffect(() => {
         const selectedLanguage = restaurantName.findIndex((element => element.country === props.language))
         setTranslatedData(restaurantName[selectedLanguage])
