@@ -4,7 +4,6 @@ import "./../css/Menu.css";
 function Menu() {
   return (
     <>
-      hello
       <link
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.11.1/css/all.css"
