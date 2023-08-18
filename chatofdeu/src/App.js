@@ -1,5 +1,5 @@
     import React from "react";
-    import { Routes, Route } from "react-router-dom";
+    import { Routes, Route, useNavigate, Link } from "react-router-dom";
 
     import "./App.css";
     import Menu from "../src/page/Menu";
@@ -13,6 +13,8 @@
     import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 function App() {
+    let [value, setValue] = React.useState(0);
+    let navigate = useNavigate();
     
     return (
     <>
@@ -20,18 +22,6 @@ function App() {
         <div class="title">Menu</div>
         </div>
 
-        <Navi /> 
-        <Routes>
-        {/* <Route path="/" element={<Menu />} /> */}
-        <Route path="/facility" element={<Facility />} />
-        </Routes>
-    </>
-    );
-    }
-
-    function Navi() {
-        let [value, setValue] = React.useState(0);
-    return <>
         <BottomNavigation
             showLabels
             value={value}
@@ -39,10 +29,15 @@ function App() {
             setValue(newValue);
             }}
         >
-            <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-            <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+            <BottomNavigationAction label="학식" component={Link} to="/" />
+            <BottomNavigationAction label="시설 정보" component={Link} to="/facility" />
         </BottomNavigation>
-    </>;
+        <Routes>
+        {/* <Route path="/" element={<Menu />} /> */}
+        <Route path="/facility" element={<Facility />} />
+        </Routes>
+    </>
+    );
     }
 
     export default App;
