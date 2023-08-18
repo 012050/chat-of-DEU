@@ -1,46 +1,58 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import '../css/ModalForPopup.css'
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
 
 
 const ModalForPopup = () => {
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleModalClick = (event) => {
+        // Check if the clicked element is the modal's outer container.
+        // If so, close the modal.
+        if (event.target.classList.contains('modal')) {
+            closeModal();
+        }
+    };
 
     return (
         <div>
-            <Button className='button-for-modal' onClick={handleOpen}>Open modal</Button>
-            <Modal 
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style} >
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Text in a modal
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </Typography>
-                </Box>
-            </Modal>
+            <button onClick={openModal}>지도 보기</button>
+            {isModalOpen && (
+                <div className="modal" onClick={handleModalClick}>
+                    <div className="modal-content">
+                        <div className='modal-content-header'>
+                            <h3 style={{ margin: 0 }}>
+                                건물이름
+                            </h3>
+                            <div className='close-button-mother'>
+                                <span className="close" onClick={closeModal}>x</span>
+                            </div>
+                        </div>
+
+                        <img className='modal-content-img' src='/img/1.jpg' width={'100%'} />
+                        <div className='modal-content-bottom'>
+                            <h4 style={{ marginTop: "15px" }}>
+                                건물 번호 : &nbsp;
+                            </h4>
+                            <h4 style={{ marginTop: "15px", color: "red" }}>
+                                4
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
