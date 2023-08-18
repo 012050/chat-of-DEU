@@ -5,35 +5,44 @@
     import Menu from "../src/page/Menu";
     import Facility from "../src/page/Facility";
 
+    import { createTheme, ThemeProvider } from '@mui/material';
     import BottomNavigation from "@mui/material/BottomNavigation";
     import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 
 function App() {
     let [nav, setNav] = useState(0);
     let [lenguage, setLenguage] = useState("ko"); //언어
+
+    let theme = createTheme({
+        palette: {
+          primary: {
+            main: '#303030', // 원하는 주 색상을 지정합니다.
+          },
+        },
+      });
     
     return (
         <div className="App">
-        <div class="header">
-            <div class="title container">DF&S</div>
+            <ThemeProvider theme={theme}>
+                <div class="title">DF&S</div>
+                    
+                <BottomNavigation
+                    className="navBar"
+                    showLabels
+                    value={nav}
+                    onChange={(event, newValue) => {
+                    setNav(newValue);
+                    }}
+                >
+                    <BottomNavigationAction label="학식" component={Link} to="/" color="primary"/>
+                    <BottomNavigationAction label="시설 정보" component={Link} to="/facility" color="primary"/>
+                </BottomNavigation>
+                <Routes>
+                <Route path="/" element={<Menu />} />
+                <Route path="/facility" element={<Facility />} />
+                </Routes>
+            </ThemeProvider>
         </div>
-
-        <BottomNavigation
-            className="navBar"
-            showLabels
-            value={nav}
-            onChange={(event, newValue) => {
-            setNav(newValue);
-            }}
-        >
-            <BottomNavigationAction label="학식" component={Link} to="/" />
-            <BottomNavigationAction label="시설 정보" component={Link} to="/facility" />
-        </BottomNavigation>
-        <Routes>
-        <Route path="/" element={<Menu />} />
-        <Route path="/facility" element={<Facility />} />
-        </Routes>
-    </div>
     );
     }
 
