@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # 메인 페이지(홈 페이지) 라우팅/ 리퀘스트 방법 GET, POST
 @app.route("/translation/food", methods=['POST'])
-def traslation():
+def food():
     if request.form.get('data') != 'ko':
         lan_type = request.form.get('data')
     else:
