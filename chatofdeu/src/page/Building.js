@@ -14,24 +14,20 @@ import FormControl from '@mui/material/FormControl';
 
 function Building(){
     let [select, setSelect] = useState("식당"); //선택 값
-    let [data, setData] = useState([ //건물 데이터
-        {idx: 1, name: "지천관"},
-        {idx: 2, name: "국제관"},
-        {idx: 3, name: "정보공학관"}
-    ])
-
+    let [data, setData] = useState([]);
+    let [language, setLanguage] = useState("ko"); //언어 값
 
     useEffect(()=>{
-        axios.post('http://localhost:5001/building/info', {}, {params:{
-                keyword: "ATM",
-                lan_type: "ko"
-            }})
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        axios.post('http://minimalist.iptime.org:8080/building/info', {}, {params:{
+            keyword: `${select}`,
+            lan_type: `${language}`
+          }})
+          .then((res) => {
+            setData(res.data.build_info);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     },[select])
 
     const Item = styled(Paper)(({ theme }) => ({
@@ -49,7 +45,7 @@ function Building(){
           width="100%"
         />
         <BuildingRadio select = {select} setSelect = {setSelect}/>
-        <BuildingCard/>
+        {data.map((r, i) => <BuildingCard key={i} i={i} data={data}/>)}
       </div>
     );
 }
@@ -80,7 +76,7 @@ function BuildingRadio({select, setSelect}){
                     <FormControlLabel value="카페" control={<Radio />} label="카페" />
                 </Grid>
                 <Grid item xs={2} md={4}>
-                    <FormControlLabel value="스터디" control={<Radio />} label="스터디" />
+                    <FormControlLabel value="스터디 공간" control={<Radio />} label="스터디" />
                 </Grid>
                 <Grid item xs={2} md={4}>
                     <FormControlLabel value="ATM" control={<Radio />} label="ATM" />
@@ -98,12 +94,12 @@ function BuildingRadio({select, setSelect}){
     )
 }
 
-function BuildingCard(){
+function BuildingCard({i, data}){
     return(
         <div className="mealCard">
             <div className="mealDetail">
-                <h3>지천관</h3>
-                <p><b>건물번호</b> : 1</p>
+                <h3>{data[i][1]}</h3>
+                <p><b>건물번호 : </b>{data[i][0]}</p>
             </div>
         </div>
     )
