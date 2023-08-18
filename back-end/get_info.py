@@ -110,9 +110,112 @@ def date_info():
     collections.Callable = collections.abc.Callable
     html_text = requests.get('https://www.deu.ac.kr/www/academic_calendar')
     soup = bs(html_text.text, 'html.parser')
-    temp = soup.find_all("div > ul > li")
+    
+    list_3 = []
+    list_4 = []
+    list_5 = []
+    list_6 = []
+    list_7 = []
+    list_8 = []
+    list_9 = []
+    list_10 = []
+    list_11 = []
+    list_12 = []
 
-    return temp
+    march_card = soup.find('h4', class_='card-header', text='3월')
+    march_data_list = march_card.find_next('ul', class_='calendar-list')
+    march_items = march_data_list.find_all('li')
+    list_3.append("3월")
+    for item in march_items:
+        list_3.append(item.text)
+        print("3월 데이터:", item.text)
+
+    march_card = soup.find('h4', class_='card-header', text='4월')
+    march_data_list = march_card.find_next('ul', class_='calendar-list')
+    march_items = march_data_list.find_all('li')
+    list_4.append("4월")
+    for item in march_items:
+        list_4.append(item.text)
+        print("4월 데이터:", item.text)
+
+    march_card = soup.find('h4', class_='card-header', text='5월')
+    march_data_list = march_card.find_next('ul', class_='calendar-list')
+    march_items = march_data_list.find_all('li')
+    list_5.append("5월")
+    for item in march_items:
+        list_5.append(item.text)
+        print("5월 데이터:", item.text)
+
+    march_card = soup.find('h4', class_='card-header', text='6월')
+    march_data_list = march_card.find_next('ul', class_='calendar-list')
+    march_items = march_data_list.find_all('li')
+    list_6.append("6월")
+    for item in march_items:
+        list_6.append(item.text)
+        print("6월 데이터:", item.text)
+
+    march_card = soup.find('h4', class_='card-header', text='7월')
+    march_data_list = march_card.find_next('ul', class_='calendar-list')
+    march_items = march_data_list.find_all('li')
+    list_7.append("7월")
+    for item in march_items:
+        list_7.append(item.text)
+        print("7월 데이터:", item.text)
+
+    march_card = soup.find('h4', class_='card-header', text='8월')
+    march_data_list = march_card.find_next('ul', class_='calendar-list')
+    march_items = march_data_list.find_all('li')
+    list_8.append("8월")
+    for item in march_items:
+        list_8.append(item.text)
+        print("8월 데이터:", item.text)
+
+    march_card = soup.find('h4', class_='card-header', text='9월')
+    march_data_list = march_card.find_next('ul', class_='calendar-list')
+    march_items = march_data_list.find_all('li')
+    list_9.append("9월")
+    for item in march_items:
+        list_9.append(item.text)
+        print("9월 데이터:", item.text)
+
+    march_card = soup.find('h4', class_='card-header', text='10월')
+    march_data_list = march_card.find_next('ul', class_='calendar-list')
+    march_items = march_data_list.find_all('li')
+    list_10.append("10월")
+    for item in march_items:
+        list_10.append(item.text)
+        print("10월 데이터:", item.text)
+
+    march_card = soup.find('h4', class_='card-header', text='11월')
+    march_data_list = march_card.find_next('ul', class_='calendar-list')
+    march_items = march_data_list.find_all('li')
+    list_11.append("11월")
+    for item in march_items:
+        list_11.append(item.text)
+        print("11월 데이터:", item.text)
+
+    march_card = soup.find('h4', class_='card-header', text='12월')
+    march_data_list = march_card.find_next('ul', class_='calendar-list')
+    march_items = march_data_list.find_all('li')
+    list_12.append("12월")
+    for item in march_items:
+        list_12.append(item.text)
+        print("12월 데이터:", item.text)
+
+    total_list = []
+    
+    total_list.append(list_3)
+    total_list.append(list_4)
+    total_list.append(list_5)
+    total_list.append(list_6)
+    total_list.append(list_7)
+    total_list.append(list_8)
+    total_list.append(list_9)
+    total_list.append(list_10)
+    total_list.append(list_11)
+    total_list.append(list_12)
+
+    return total_list
 
 if __name__ == "__main__":
     print(date_info())

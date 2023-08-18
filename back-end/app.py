@@ -99,6 +99,24 @@ def translator():
 
     return return_txt
 
+@app.route("/calender", methods=['POST'])
+def calen():
+    lan_type = request.args.get('lan_type')
+
+    calen_list = date_info()
+
+    if lan_type == "ko":
+        return calen_list
+    else:
+        total_list = []
+        for i in range(len(calen_list)):
+            semi_list = []
+            for j in range(len(calen_list[i])):
+                date = trans(calen_list[i][j], lan_type)
+                semi_list.append(date)
+            total_list.append(semi_list)
+        return total_list
+
 
 
 # debug 모드로 실행
