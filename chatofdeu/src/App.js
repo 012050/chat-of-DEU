@@ -1,32 +1,84 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 
 import "./App.css";
 import Menu from "../src/page/Menu";
 import Facility from "../src/page/Facility";
 
-import { createTheme, ThemeProvider } from '@mui/material';
+import { createTheme, Modal, ThemeProvider } from '@mui/material';
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import LanguageToggle from "./components/LanguageToggle";
 import Header from "./components/Header";
+import ModalForPopup from "./components/ModalForPopup";
+
+let theme = createTheme({
+    palette: {
+        primary: {
+            main: '#303030', // 원하는 주 색상을 지정합니다.
+        },
+    },
+});
+
+const languages = [
+    {
+        country: "KR",
+        title:[
+            "학식",
+            "시설정보"
+        ]
+    },
+    {
+        country: "EN",
+        title:[
+            "meals",
+            "Building information"
+        ]
+       
+    },
+    {
+        country: "JP",
+        title:[
+            "学食",
+            "施設情報"
+        ]
+        
+    },
+    {
+        country: "VN",
+        title:[
+            "Bữa ăn",
+            "Thông tin về tòa nhà"
+        ]
+        
+    },
+    {
+        country: "CN",
+        title:[
+            "餐食",
+            "建筑信息"
+        ]
+        
+    },
+]
+
 
 function App() {
     let [nav, setNav] = useState(0);
-    let [lenguage, setLenguage] = useState("ko"); //언어
-
-    let theme = createTheme({
-        palette: {
-            primary: {
-                main: '#303030', // 원하는 주 색상을 지정합니다.
-            },
-        },
-    });
+    let [language, setLanguage] = useState("KR"); //언어
+    const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+    const languageSelection=(lang)=>{
+        setLanguage(lang.code)
+        const number = languages.findIndex((element => element.country === lang.code))
+        setSelectedLanguage(languages[number])
+    }
+    
 
     return (
         <div className="App">
+            {/* <ModalForPopup/> */}
             <ThemeProvider theme={theme}>
-                <Header />
+                <Header languageSelection={languageSelection}/>
                 <BottomNavigation
                     className="navBar"
                     showLabels
@@ -35,12 +87,12 @@ function App() {
                         setNav(newValue);
                     }}
                 >
-                    <BottomNavigationAction label="학식" component={Link} to="/" color="primary" />
-                    <BottomNavigationAction label="시설 정보" component={Link} to="/facility" color="primary" />
+                    <BottomNavigationAction label={selectedLanguage.title[0]} component={Link} to="/" color="primary" />
+                    <BottomNavigationAction label={selectedLanguage.title[1]} component={Link} to="/facility" color="primary" />
                 </BottomNavigation>
                 <Routes>
-                    <Route path="/" element={<Menu />} />
-                    <Route path="/facility" element={<Facility />} />
+                    <Route path="/" element={<Menu language={language}/>} />
+                    <Route path="/facility" element={<Facility/>} />
                 </Routes>
             </ThemeProvider>
         </div>

@@ -1,11 +1,14 @@
-.App{
+.App {
     background-color: #eaeaea;
 }
-.container { /* 왼쪽 중앙 정렬 */
+
+.container {
+    /* 왼쪽 중앙 정렬 */
     text-align: left;
     margin-left: 33%;
     margin-right: 33%;
-    height: 100vh;
+    min-height: 100vh;
+    padding-bottom: 60px;
 }
 
 /* .title {
@@ -17,7 +20,7 @@
     width: 350px;
 } */
 
-.navBar{
+.navBar {
     position: fixed;
     left: 0;
     right: 0;
@@ -26,8 +29,10 @@
 
 /* 반응형 */
 @media only screen and (max-width: 650px) {
-    .container, .title{
+
+    .container,
+    .title {
         margin-left: 5%;
-        margin-right:5%;
+        margin-right: 5%;
     }
 }
