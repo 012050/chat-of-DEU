@@ -90,15 +90,14 @@ def school_info():
                 list.add(p[i][0])
 
     final_list = []
-    semi_list = []
 
     for i in list:
         for j in number_list:
             if i == j[1]:
-                final_list.append([str(j[0]) + " " + j[1]])
-                
+                final_list.append([str(j[0]),  j[1]])
 
-        
+    final_list = sorted(final_list, key=lambda x: int(x[0]))
+
     if html_text.status_code == 200:
         # json.dumps(final_list, ensure_ascii=False, indent="\t")
         return final_list
