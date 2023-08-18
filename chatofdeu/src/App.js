@@ -88,7 +88,7 @@ function App() {
                     }}
                 >
                     <BottomNavigationAction label={selectedLanguage.title[0]} component={Link} to="/" color="primary" />
-                    <BottomNavigationAction label={selectedLanguage.title[1]} component={Link} to="/facility" color="primary" />
+                    <BottomNavigationAction label={selectedLanguage.title[1]} component={Link} to="/building" color="primary" />
                 </BottomNavigation>
                 <Routes>
                     <Route path="/" element={<Menu language={language}/>} />
