@@ -26,10 +26,10 @@ function Building(){
             keyword: "ATM",
             lan_type: "ko"
           })
-          .then(function (response) {
-            console.log(response);
+          .then((res) => {
+            console.log(res.data);
           })
-          .catch(function (error) {
+          .catch((error) => {
             console.log(error);
           });
     },[select])
@@ -49,7 +49,7 @@ function Building(){
           width="100%"
         />
         <BuildingRadio select = {select} setSelect = {setSelect}/>
-        <BuildingCard/>
+        {data.map((r, i) => <BuildingCard key={i} i={i} data={data}/>)}
       </div>
     );
 }
@@ -98,12 +98,12 @@ function BuildingRadio({select, setSelect}){
     )
 }
 
-function BuildingCard(){
+function BuildingCard({i, data}){
     return(
         <div className="mealCard">
             <div className="mealDetail">
-                <h3>지천관</h3>
-                <p><b>건물번호</b> : 1</p>
+                <h3>{data[i].name}</h3>
+                <p><b>건물번호 : </b>{data[i].idx}</p>
             </div>
         </div>
     )
