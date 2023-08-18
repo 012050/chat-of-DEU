@@ -13,6 +13,8 @@ app = Flask(__name__)
 # 메인 페이지(홈 페이지) 라우팅/ 리퀘스트 방법 GET, POST
 @app.route("/translation/food", methods=['POST'])
 def traslation():
+    if request.method == 'OPTIONS': 
+        return build_preflight_response()
     lan_type = request.args.get('data')
 
     data = get_food()
@@ -56,7 +58,7 @@ def traslation():
 
     restaurant.append(food_list)
 
-    return jsonify(restaurant)
+    return build_actual_response(jsonify({"restaurant":restaurant}))
 
 @app.route("/building/info", methods=['POST', 'OPTIONS'])
 def information():
@@ -92,15 +94,19 @@ def build_actual_response(response):
 
 @app.route("/translator",  methods=['POST'])
 def translator():
+    if request.method == 'OPTIONS': 
+        return build_preflight_response()
     txt = request.args.get('text')
     lan_type = request.args.get('lan_type')
 
     return_txt = transl(txt, lan_type)
 
-    return return_txt
+    return build_actual_response(jsonify({"return_txt":return_txt}))
 
 @app.route("/calender", methods=['POST'])
 def calen():
+    if request.method == 'OPTIONS': 
+        return build_preflight_response()
     lan_type = request.args.get('lan_type')
 
     calen_list = date_info()
@@ -115,7 +121,7 @@ def calen():
                 date = trans(calen_list[i][j], lan_type)
                 semi_list.append(date)
             total_list.append(semi_list)
-        return total_list
+        return build_actual_response(jsonify({"total_list":total_list}))
 
 
 
