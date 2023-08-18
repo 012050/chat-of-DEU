@@ -58,7 +58,7 @@ def traslation():
 
     return jsonify(restaurant)
 
-@app.route("/building/info", methods=['POST'])
+@app.route("/building/info", methods=['POST', 'OPTIONS'])
 def information():
     keyword = request.form.get('keyword')
     lan_type = request.form.get('lan_type')
@@ -69,11 +69,11 @@ def information():
         build_info = school_info(keyword)
         for i in range(len(build_info)):
             tr = trans(build_info[i][1], lan_type)
-            tr = json.loads(tr)
-            tr = tr["message"]["result"]["translatedText"]
+            # tr = json.loads(tr)
+            # tr = tr["message"]["result"]["translatedText"]
             build_info[i][1] = tr            
 
-    return build_info
+    return jsonify(build_info)
 
 # debug 모드로 실행
 if __name__ == "__main__":
