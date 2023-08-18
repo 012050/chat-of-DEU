@@ -10,6 +10,7 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import LanguageToggle from "./components/LanguageToggle";
 import Header from "./components/Header";
+import ModalForPopup from "./components/ModalForPopup";
 
 
 let theme = createTheme({
@@ -76,7 +77,7 @@ function App() {
 
     return (
         <div className="App">
-            {/* <ModalForPopup/> */}
+            <ModalForPopup/> 
             <ThemeProvider theme={theme}>
                 <Header languageSelection={languageSelection}/>
                 <BottomNavigation
