@@ -14,6 +14,15 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
 function Building(){
+    // let [selectLan, setSelect] = useState({
+    //     country: "ko",
+    //     restaurant: [
+    //         "식당",
+    //         "카페",
+    //         "스터디",
+    //         "ATM",
+    //     ]
+    // });
     let [select, setSelect] = useState("식당"); //선택 값
     let [data, setData] = useState([]);
     
