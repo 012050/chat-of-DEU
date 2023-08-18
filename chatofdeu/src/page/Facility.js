@@ -1,3 +1,5 @@
+import "./../css/Facility.css"
+
 function Facility(){
     return(
         <div className="container">
