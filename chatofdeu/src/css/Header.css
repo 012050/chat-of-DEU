@@ -1,0 +1,32 @@
+.header-container{
+    /* text-align: left;
+    margin-left: 33%;
+    margin-right: 33%;
+    position:sticky;
+    top:0px;
+    padding-top: 20px;
+    background-color: red;
+    display: flex;
+    justify-content: space-between; */
+    position:sticky;
+    top:0;
+    text-align: left;
+    margin-left: 33%;
+    margin-right: 33%;
+    background-color: #eaeaea;
+}
+.header-relative{
+    position: relative;
+    display: flex;
+}
+.logo{
+    font-size: 50px;
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 650px) {
+    .header-container{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
