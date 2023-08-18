@@ -2,7 +2,7 @@ import os
 import urllib.request
 from dotenv import load_dotenv
 import json
-def trans(txt, lan_type):
+def transl(txt, lan_type):
     load_dotenv()
     client_id = os.environ.get('ClientID')
     client_secret = os.environ.get('ClientSecret')

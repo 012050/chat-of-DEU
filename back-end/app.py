@@ -5,6 +5,7 @@ from flask import Flask, jsonify, request, make_response
 from get_info import *
 from translate import trans
 from flask_cors import CORS
+from translator import transl
 
 
 app = Flask(__name__)
@@ -88,6 +89,17 @@ def build_preflight_response():
 def build_actual_response(response):
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
+
+@app.route("/translator",  methods=['POST'])
+def translator():
+    txt = request.args.get('text')
+    lan_type = request.args.get('lan_type')
+
+    return_txt = transl(txt, lan_type)
+
+    return return_txt
+
+
 
 # debug 모드로 실행
 if __name__ == "__main__":
