@@ -1,22 +1,52 @@
-from flask import Flask, render_template, request
+import time
+
+from flask import Flask, jsonify, request
+
+from get_info import get_food
 from translate import trans
 
 app = Flask(__name__)
 
 # 메인 페이지(홈 페이지) 라우팅/ 리퀘스트 방법 GET, POST
-@app.route("/translation", methods=['POST'])
+@app.route("/translation/food", methods=['POST'])
 def traslation():
     lan_type = request.form.get('data')
 
-    # json data를 txt안에 넣어주세요
-    # list = []
-    # json.stringfy()
-    for i in list:
-        txt = i
-        t = trans(txt, lan_type)
-        list.append(t)
-        # json으로 만들기
-    return t
+    data = get_food()
+    building = []
+    restaurant = {}
+
+    for key in data:
+        building.append([key, data[key]])
+
+    # hyomin      = building[0]
+    # happy       = building[1]
+    # inforamtion  = building[2]
+    # suduck      = building[3]
+
+    if building[0][1][0]['Date'] == 'No data':
+        building[0] = ['hyomin', None]
+    if building[2][1] == None:
+        building[2] = ['inforamtion', None]
+    if building[3][1] == None:
+        building[3] = ['suduck', None]
+
+    for day in building:
+        if day[1] is not None:
+            for data in day[1]:
+                if data['Date'] == time.strftime("%Y-%m-%d", time.localtime(time.time())):
+                    breakfast = data['breakfast']
+                    lunch = data['lunch_s']
+                    dinner = data['dinner']
+                    break
+
+    breakfast = trans(breakfast, lan_type)
+    lunch = trans(lunch, lan_type)
+    dinner = trans(dinner, lan_type)
+
+    restaurant['happy'] = [breakfast, lunch, dinner]
+
+    return jsonify(restaurant)
 
 # debug 모드로 실행
 if __name__ == "__main__":
