@@ -3,13 +3,13 @@ import sys
 import urllib.request
 from dotenv import load_dotenv
 
-def trans(txt):
+def trans(txt, lan_type):
     load_dotenv()
     client_id = os.environ.get('ClientID')
     client_secret = os.environ.get('ClientSecret')
     
     encText = urllib.parse.quote(txt)
-    data = "source=ko&target=en&text=" + encText
+    data = "source=ko&target={}&text=".format(lan_type) + encText
     url = "https://openapi.naver.com/v1/papago/n2mt"
 
     request = urllib.request.Request(url)
