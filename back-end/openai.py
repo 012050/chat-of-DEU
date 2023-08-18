@@ -19,6 +19,7 @@ class Input:
         )
 
         self.chat_response = self.completion.choices[0].message.content
-        print()
-        
+        print(f'ChatGPT : {self.chat_response}')
+        self.messages.append({"role" : "assistant", "content": self.chat_response})
 
+        return "ChatGPT : {}".format(self.chat_response)
