@@ -74,8 +74,6 @@ def information():
             build_info = school_info(keyword)
             for i in range(len(build_info)):
                 tr = trans(build_info[i][1], lan_type)
-                tr = json.loads(tr)
-                tr = tr["message"]["result"]["translatedText"]
                 build_info[i][1] = tr
     return build_actual_response(jsonify({"build_info":build_info}))
 

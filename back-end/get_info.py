@@ -110,9 +110,9 @@ def date_info():
     collections.Callable = collections.abc.Callable
     html_text = requests.get('https://www.deu.ac.kr/www/academic_calendar')
     soup = bs(html_text.text, 'html.parser')
-    temp = soup.find_all("div", class_="row")
+    temp = soup.find_all("div > ul > li")
 
     return temp
 
 if __name__ == "__main__":
-    print(school_info(key="ATM"))
+    print(date_info())
