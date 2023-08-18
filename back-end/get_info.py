@@ -15,7 +15,7 @@ def get_food():
     else:
         return r.status_code
 
-def school_info():
+def school_info(key):
     collections.Callable = collections.abc.Callable
     html_text = requests.get('https://www.deu.ac.kr/www/content/57')
     number_html_text = requests.get("https://www.deu.ac.kr/www/content/14")
@@ -61,8 +61,6 @@ def school_info():
 
 
     list = set()
-
-    key = "식당"
 
     if key == "ATM":
         for i in range(len(p)):

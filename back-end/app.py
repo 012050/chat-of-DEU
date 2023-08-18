@@ -2,7 +2,7 @@ import time
 
 from flask import Flask, jsonify, request
 
-from get_info import get_food
+from get_info import *
 from translate import trans
 
 app = Flask(__name__)
@@ -51,6 +51,12 @@ def traslation():
     restaurant['happy'] = [breakfast, lunch, dinner]
 
     return jsonify(restaurant)
+
+@app.route("/building/info", methods=['POST'])
+def information():
+    keyword = request.form.get('keyword')
+    build_info = school_info(keyword)
+    return build_info
 
 # debug 모드로 실행
 if __name__ == "__main__":
