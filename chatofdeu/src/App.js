@@ -3,7 +3,7 @@ import { Routes, Route, useNavigate, Link } from "react-router-dom";
 
 import "./App.css";
 import Menu from "../src/page/Menu";
-import Facility from "../src/page/Facility";
+import Building from "../src/page/Building";
 
 import { createTheme, ThemeProvider } from '@mui/material';
 import BottomNavigation from "@mui/material/BottomNavigation";
@@ -36,11 +36,11 @@ function App() {
                     }}
                 >
                     <BottomNavigationAction label="학식" component={Link} to="/" color="primary" />
-                    <BottomNavigationAction label="시설 정보" component={Link} to="/facility" color="primary" />
+                    <BottomNavigationAction label="시설 정보" component={Link} to="/building" color="primary" />
                 </BottomNavigation>
                 <Routes>
                     <Route path="/" element={<Menu />} />
-                    <Route path="/facility" element={<Facility />} />
+                    <Route path="/building" element={<Building />} />
                 </Routes>
             </ThemeProvider>
         </div>

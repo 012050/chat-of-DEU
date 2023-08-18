@@ -1,5 +1,6 @@
-import { useState } from "react";
-import "./../css/Facility.css"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "./../css/Building.css"
 
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -10,10 +11,28 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 
-function Facility(){
+function Building(){
     let [select, setSelect] = useState("식당"); //선택 값
+    let [data, setData] = useState([ //건물 데이터
+        {idx: 1, name: "지천관"},
+        {idx: 2, name: "국제관"},
+        {idx: 3, name: "정보공학관"}
+    ])
+
+
+    useEffect(()=>{
+        axios.post('http://minimalist.iptime.org:8080/building/info', {
+            keyword: "ATM",
+            lan_type: "ko"
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    },[select])
 
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -23,14 +42,14 @@ function Facility(){
         color: theme.palette.text.secondary,
       }));
 
-
     return (
       <div className="container">
         <img
           src={process.env.PUBLIC_URL + "/img/camplus-map.jpg"}
           width="100%"
         />
-        <FacilityRadio select = {select} setSelect = {setSelect}/>
+        <BuildingRadio select = {select} setSelect = {setSelect}/>
+        <BuildingCard/>
       </div>
     );
 }
@@ -40,7 +59,7 @@ function Facility(){
  * @param select 선택값
  * @param setSelect 선택값 설정 함수
  */
-function FacilityRadio({select, setSelect}){
+function BuildingRadio({select, setSelect}){
     const handleChange = (event) => {
         setSelect(event.target.value);
     };
@@ -61,7 +80,7 @@ function FacilityRadio({select, setSelect}){
                     <FormControlLabel value="카페" control={<Radio />} label="카페" />
                 </Grid>
                 <Grid item xs={2} md={4}>
-                    <FormControlLabel value="스터디 공간" control={<Radio />} label="스터디" />
+                    <FormControlLabel value="스터디" control={<Radio />} label="스터디" />
                 </Grid>
                 <Grid item xs={2} md={4}>
                     <FormControlLabel value="ATM" control={<Radio />} label="ATM" />
@@ -79,4 +98,16 @@ function FacilityRadio({select, setSelect}){
     )
 }
 
-export default Facility;
+function BuildingCard(){
+    return(
+        <div className="mealCard">
+            <div className="mealDetail">
+                <h3>지천관</h3>
+                <p><b>건물번호</b> : 1</p>
+            </div>
+        </div>
+    )
+}
+
+
+export default Building;
