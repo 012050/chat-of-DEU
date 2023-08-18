@@ -6,9 +6,9 @@ const LanguageToggle = () => {
     const langData = [
         { code: 'KR', tooltip: 'KR', flow: 'down', flag: 'south-korea' },
         { code: 'EN', tooltip: 'EN', flow: 'down', flag: 'united-kingdom' },
-        { code: 'FR', tooltip: 'FR', flow: 'down', flag: 'japan' },
-        { code: 'PT', tooltip: 'PT', flow: 'down', flag: 'vietnam' },
-        { code: 'DE', tooltip: 'DE', flow: 'up', flag: 'china' }
+        { code: 'JP', tooltip: 'JP', flow: 'down', flag: 'japan' },
+        { code: 'VN', tooltip: 'VN', flow: 'down', flag: 'vietnam' },
+        { code: 'CN', tooltip: 'CN', flow: 'up', flag: 'china' }
     ];
 
     const [selectedLang, setSelectedLang] = useState(langData[0]);
@@ -19,7 +19,13 @@ const LanguageToggle = () => {
         const selectedLanguageIndex = langData.findIndex((element) => element.code ===lang.code)
         langData[selectedLanguageIndex]=langData[0]
         langData[0]=lang
-        console.log(langData);
+        for(let i=0; i<langData.length;i++)
+        {
+            langData[i].flow='down'
+            if(langData.length-1===i){
+                langData[i].flow='up'
+            }
+        }
         setUpdatedLangData(langData)
         
     };

@@ -13,7 +13,7 @@ body {
   transform: translateX(-50%);
   border-radius: 10px;
   border: 0.5px solid rgba(202, 219, 226, 0.40);
-  box-shadow: 0px 3px 6px rgba(79, 104, 113, 0.20);
+  /* box-shadow: 0px 3px 6px rgba(79, 104, 113, 0.20); */
   overflow: hidden;
   transition: height 0.2s ease-in-out, border-radius 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
@@ -21,7 +21,7 @@ body {
     height: 186px;
     /* Can't use height: auto & transition effect */
     border-radius: 20px;
-    box-shadow: 0px 7px 10px rgba(79, 104, 113, 0.30);
+    /* box-shadow: 0px 7px 10px rgba(79, 104, 113, 0.30); */
   }
 
   ul {
