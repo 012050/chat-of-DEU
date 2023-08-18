@@ -8,6 +8,7 @@
     import { createTheme, ThemeProvider } from '@mui/material';
     import BottomNavigation from "@mui/material/BottomNavigation";
     import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import LanguageToggle from "./components/LanguageToggle";
 
 function App() {
     let [nav, setNav] = useState(0);
@@ -25,7 +26,7 @@ function App() {
         <div className="App">
             <ThemeProvider theme={theme}>
                 <div class="title">DF&S</div>
-                    
+                    <LanguageToggle/>
                 <BottomNavigation
                     className="navBar"
                     showLabels
