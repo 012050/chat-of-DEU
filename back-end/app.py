@@ -110,7 +110,7 @@ def calen():
     calen_list = date_info()
 
     if lan_type == "ko":
-        return calen_list
+        return build_actual_response(jsonify({"calen_list":calen_list}))
     else:
         total_list = []
         for i in range(len(calen_list)):
