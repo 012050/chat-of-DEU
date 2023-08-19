@@ -3,6 +3,7 @@
 //npm install @fontsource/roboto
 //npm install @mui/icons-material
 //npm install axios
+//npm install @reduxjs/toolkit react-redux
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -11,14 +12,18 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
+import store from './redux/store.js';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  </Provider>
 );
 
 // If you want your app to work offline and load faster, you can change

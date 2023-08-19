@@ -4,11 +4,11 @@ import '../css/LanguageToggle.css'
 
 const LanguageToggle = (props) => {
     const langData = [
-        { code: 'KR', tooltip: 'KR', flow: 'down', flag: 'south-korea' },
-        { code: 'EN', tooltip: 'EN', flow: 'down', flag: 'united-kingdom' },
-        { code: 'JP', tooltip: 'JP', flow: 'down', flag: 'japan' },
-        { code: 'VN', tooltip: 'VN', flow: 'down', flag: 'vietnam' },
-        { code: 'CN', tooltip: 'CN', flow: 'up', flag: 'china' }
+        { code: 'ko', tooltip: 'ko', flow: 'down', flag: 'south-korea' },
+        { code: 'en', tooltip: 'en', flow: 'down', flag: 'united-kingdom' },
+        { code: 'ja', tooltip: 'ja', flow: 'down', flag: 'japan' },
+        { code: 'vi', tooltip: 'vi', flow: 'down', flag: 'vietnam' },
+        { code: 'zh-CN', tooltip: 'zh-CN', flow: 'up', flag: 'china' }
     ];
 
     const [selectedLang, setSelectedLang] = useState(langData[0]);
