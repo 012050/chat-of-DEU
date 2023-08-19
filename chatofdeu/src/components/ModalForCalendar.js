@@ -46,5 +46,4 @@ const ModalForCalendar = (props) => {
         </>
   )
 }
-
 export default ModalForCalendar
