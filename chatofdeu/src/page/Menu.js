@@ -10,8 +10,8 @@ function Menu() {
         {
             country: "ko",
             restaurant: [
-                "행복 기숙사",
                 "효민 기숙사",
+                "행복 기숙사",
                 "수덕전",
                 "정보공학관",
             ],
@@ -24,8 +24,8 @@ function Menu() {
         {
             country: "en",
             restaurant: [
-                "Haengbok dorm",
                 "Hyomin dorm",
+                "Haengbok dorm",
                 "SuDeokjeon",
                 "Information Engineering Building",
             ],
@@ -38,8 +38,8 @@ function Menu() {
         {
             country: "ja",
             restaurant: [
-                "ヘンボック寮",
                 "ヒョミン寮",
+                "ヘンボック寮",
                 "スドックゼン",
                 "情報工学館",
             ],
@@ -52,8 +52,8 @@ function Menu() {
         {
             country: "vi",
             restaurant: [
-                "Ký túc xá hạnh phúc",
                 "Ký túc xá Hiếu Mẫn",
+                "Ký túc xá hạnh phúc",
                 "Tu Đức điện",
                 "Nhà Khoa học thông tin",
             ],
@@ -66,8 +66,8 @@ function Menu() {
         {
             country: "zh-CN",
             restaurant: [
-                "幸福宿舍",
                 "孝敏宿舍",
+                "幸福宿舍",
                 "修德殿",
                 "信息工程馆",
             ],
@@ -91,7 +91,7 @@ function Menu() {
         const selectedLanguage = restaurantName.findIndex((element => element.country === language))
         setTranslatedData(restaurantName[selectedLanguage])
         //식단 데이터 불러오기
-        axios.post('http://minimalist.iptime.org:8080/translation/food', {}, {params:{
+        axios.post('http://localhost:8080/translation/food', {}, {params:{
             data: `${language}`,
           }}) 
           .then((res) => {
