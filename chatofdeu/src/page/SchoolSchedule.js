@@ -7,7 +7,7 @@ const SchoolSchedule = () => {
     const [data,setData]=useState([])
     
     useEffect(() => {
-        axios.post("http://minimalist.iptime.org:8080/calender", {}, {
+        axios.post("http://localhost:8080/calender", {}, {
             params:{
                 lan_type : "ko"
             }

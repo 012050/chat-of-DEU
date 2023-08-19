@@ -58,7 +58,7 @@ function Building(){
         let num = buildingName.findIndex((element => element.country === language));
         setTranslatedData(buildingName[num]);
 
-        axios.post('http://minimalist.iptime.org:8080/building/info', {}, {params:{
+        axios.post('http://localhost:8080/building/info', {}, {params:{
             keyword: `${select}`,
             lan_type: `${language}`
           }})

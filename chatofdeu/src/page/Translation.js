@@ -15,7 +15,7 @@ const Translation = () => {
   console.log(language)
 
   const translateWords=()=>{
-    axios.post("http://minimalist.iptime.org:8080/translator", {}, {
+    axios.post("http://localhost:8080/translator", {}, {
         params:{
           text : word,
           lan_type : language
