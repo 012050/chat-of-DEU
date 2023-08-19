@@ -6,8 +6,7 @@ import Modal from '@mui/material/Modal';
 import '../css/ModalForPopup.css'
 
 
-
-const ModalForPopup = () => {
+const ModalForPopup = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -57,4 +56,4 @@ const ModalForPopup = () => {
     )
 }
 
-export default ModalForPopup
+export default ModalForPopup;
