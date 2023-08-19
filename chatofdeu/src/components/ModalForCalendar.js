@@ -6,14 +6,14 @@ const ModalForCalendar = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = () => {
         setIsModalOpen(true);
+        console.log(props)
     };
-
     const closeModal = () => {
         setIsModalOpen(false);
     };
 
     const handleModalClick = (event) => {
-        
+
         if (event.target.classList.contains('modal')) {
             closeModal();
         }
@@ -32,18 +32,17 @@ const ModalForCalendar = (props) => {
                                 <span className="close" onClick={closeModal}>x</span>
                             </div>
                         </div>
-                        {props.month.map(detail=>
-                           
-                            <div>{detail[2]}</div>
-                            )}
+
 
                         <div className='modal-content-bottom'>
-                            
+                            {props.month.slice(1).map((i, index) => (
+                                <div key={index}>{i}</div>
+                            ))}
                         </div>
                     </div>
                 </div>
             )}
         </>
-  )
+    )
 }
 export default ModalForCalendar

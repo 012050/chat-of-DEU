@@ -23,14 +23,18 @@ function App() {
             country: "ko",
             title:[
                 "학식",
-                "시설정보"
+                "시설정보",
+                "번역",
+                "학사일정"
             ]
         },
         {
             country: "en",
             title:[
                 "meals",
-                "Building information"
+                "Building information",
+                "Translator",
+                "School Schedule",
             ]
            
         },
@@ -38,7 +42,11 @@ function App() {
             country: "ja",
             title:[
                 "学食",
-                "施設情報"
+                "施設情報",
+                "翻訳",
+                "学校日程"
+
+
             ]
             
         },
@@ -46,7 +54,9 @@ function App() {
             country: "vi",
             title:[
                 "Bữa ăn",
-                "Thông tin về tòa nhà"
+                "Thông tin về tòa nhà",
+                "Dịch",
+                "Lịch học tập"
             ]
             
         },
@@ -54,7 +64,10 @@ function App() {
             country: "zh-CN",
             title:[
                 "餐食",
-                "建筑信息"
+                "建筑信息",
+                "翻译",
+                "学术日程"
+
             ]
             
         },
@@ -99,8 +112,8 @@ function App() {
                 >
                     <BottomNavigationAction label={selectedLanguage.title[0]} component={Link} to="/" color="primary" />
                     <BottomNavigationAction label={selectedLanguage.title[1]} component={Link} to="/building" color="primary" />
-                    <BottomNavigationAction label={selectedLanguage.title[1]} component={Link} to="/translation" color="primary" />
-                    <BottomNavigationAction label={selectedLanguage.title[1]} component={Link} to="/calendar" color="primary" />
+                    <BottomNavigationAction label={selectedLanguage.title[2]} component={Link} to="/translation" color="primary" />
+                    <BottomNavigationAction label={selectedLanguage.title[3]} component={Link} to="/calendar" color="primary" />
                 </BottomNavigation>
                 <Routes>
                     <Route path="/" element={<Menu language={language}/>} />

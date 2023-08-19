@@ -1,21 +1,24 @@
 import React, { useEffect,useState } from 'react'
 import '../css/Translation.css'
 import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux';
+
+
 
 const Translation = () => {
-
   const [word, setWord] = useState('')
   const [data,setData]=useState('')
   function input_handler(event){
-    
     setWord(event.target.value)
   }
+  const language= useSelector((state) => state.language.value)
+  console.log(language)
 
   const translateWords=()=>{
     axios.post("http://minimalist.iptime.org:8080/translator", {}, {
         params:{
           text : word,
-          lan_type : "en"
+          lan_type : language
   
         }
       }).then((response) => {
