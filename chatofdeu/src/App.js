@@ -12,6 +12,8 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import LanguageToggle from "./components/LanguageToggle";
 import Header from "./components/Header";
+import Translation from "./page/Translation";
+import SchoolSchedule from "./page/SchoolSchedule";
 
 
 function App() {
@@ -97,10 +99,14 @@ function App() {
                 >
                     <BottomNavigationAction label={selectedLanguage.title[0]} component={Link} to="/" color="primary" />
                     <BottomNavigationAction label={selectedLanguage.title[1]} component={Link} to="/building" color="primary" />
+                    <BottomNavigationAction label={selectedLanguage.title[1]} component={Link} to="/translation" color="primary" />
+                    <BottomNavigationAction label={selectedLanguage.title[1]} component={Link} to="/calendar" color="primary" />
                 </BottomNavigation>
                 <Routes>
                     <Route path="/" element={<Menu language={language}/>} />
                     <Route path="/building" element={<Building/>} />
+                    <Route path="/translation" element={<Translation/>} />
+                    <Route path="/calendar" element={<SchoolSchedule/>} />
                 </Routes>
             </ThemeProvider>
         </div>
