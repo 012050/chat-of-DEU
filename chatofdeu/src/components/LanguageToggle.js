@@ -4,21 +4,19 @@ import '../css/LanguageToggle.css'
 
 /**
  * 
- * @param {*} props 
  * @returns 언어 선택 토글
  */
 const LanguageToggle = (props) => {
     //언어 데이터
-    const langData = [
+    let [langData, setlangData] = useState([
         { code: 'ko', tooltip: 'ko', flow: 'down', flag: 'south-korea' },
         { code: 'en', tooltip: 'en', flow: 'down', flag: 'united-kingdom' },
         { code: 'ja', tooltip: 'ja', flow: 'down', flag: 'japan' },
         { code: 'vi', tooltip: 'vi', flow: 'down', flag: 'vietnam' },
         { code: 'zh-CN', tooltip: 'zh-CN', flow: 'up', flag: 'china' }
-    ];
+    ]);
 
     const [selectedLang, setSelectedLang] = useState(langData[0]); //선택된 언어
-    const [updatedLangData,setUpdatedLangData]=useState(langData); //TODO: langData을 state로 변경
 
     //언어 선택 시 호출
     const handleLangSelect = (lang) => {
@@ -35,13 +33,13 @@ const LanguageToggle = (props) => {
                 langData[i].flow='up'
             }
         }
-        setUpdatedLangData(langData) //언어 적용
+        setlangData(langData) //언어 적용
     };
 
     return (
         <div id="select-container">
             <ul>
-                {updatedLangData.map((lang) => (
+                {langData.map((lang) => (
                     <li
                         key={lang.code}
                         lang-selection={lang.code}
