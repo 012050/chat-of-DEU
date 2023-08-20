@@ -4,8 +4,11 @@ import axios from "axios";
 import "./../css/Menu.css"
 
 
-
+/**
+ * @returns 학식 식단 페이지
+ */
 function Menu() {
+    //텍스트 언어 데이터
     const restaurantName = [
         {
             country: "ko",
@@ -79,18 +82,25 @@ function Menu() {
         },
     ]
 
-    let language = useSelector((state) => state.language.value); //언어 정보
-    let dispatch = useDispatch();
+    let language = useSelector((state) => state.language.value); //선택 언어
+    let dispatch = useDispatch(); //redux dispatch
 
-    const [translatedData, setTranslatedData] = useState(restaurantName[0])
+    const [translatedData, setTranslatedData] = useState(restaurantName[0]) //선택 언어 설정
 
-    let [data, setData] = useState(["<no data>", "<no data>", "<no data>"])
+    //식단 데이터
+    let [data, setData] = useState([
+      ["<no data>", "<no data>", "<no data>"],
+      ["<no data>", "<no data>", "<no data>"],
+      ["<no data>", "<no data>", "<no data>"],
+    ]);
 
+    //데이터 요청
     useEffect(() => {
-        //언어 코드 변경
+        //선택 언어 설정
         const selectedLanguage = restaurantName.findIndex((element => element.country === language))
         setTranslatedData(restaurantName[selectedLanguage])
-        //식단 데이터 불러오기
+
+        //식단 데이터 요청
         axios.post('http://localhost:8080/translation/food', {}, {params:{
             data: `${language}`,
           }}) 
@@ -113,8 +123,9 @@ function Menu() {
 }
 /**
  * 
- * @param data 식단 데이터
- * @param i 반복 인덱스
+ * @param {array} data 식단 데이터
+ * @param {number} i 반복 인덱스
+ * @param {object} translatedData 현재 언어
  * @returns 
  */
 function MealCard({ data, i, translatedData }) {

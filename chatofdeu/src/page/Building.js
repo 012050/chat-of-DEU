@@ -13,10 +13,14 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
+/**
+ * @returns 건물 시설 정보 페이지
+ */
 function Building(){
-    let [select, setSelect] = useState("식당"); //선택 값
-    let [data, setData] = useState([]);
+    let [select, setSelect] = useState("식당"); //시설 선택 값
+    let [data, setData] = useState([]); //시설 정보
 
+    //텍스트 언어 데이터
     let [buildingName, setBuildingName] = useState([
         {
             country: "ko",
@@ -45,19 +49,19 @@ function Building(){
         },
     ])
 
-    
-
-    const [translatedData, setTranslatedData] = useState(buildingName[0])
-
+    const [translatedData, setTranslatedData] = useState(buildingName[0]) //선택 언어 설정
     
     let language = useSelector((state) => state.language.value); //언어 정보
-    let dispatch = useDispatch();
+    let dispatch = useDispatch(); //redux dispatch
 
 
+    //시설 데이터 요청
     useEffect(()=>{
+        //선택 언어 적용
         let num = buildingName.findIndex((element => element.country === language));
         setTranslatedData(buildingName[num]);
 
+        //시설 데이터 요청
         axios.post('http://localhost:8080/building/info', {}, {params:{
             keyword: `${select}`,
             lan_type: `${language}`
@@ -85,63 +89,91 @@ function Building(){
           width="100%"
         />
         <BuildingRadio select = {select} setSelect = {setSelect} translatedData = {translatedData}/>
-        {data.map((r, i) => <BuildingCard key={i} i={i} data={data}  translatedData = {translatedData}/>)}
+        {data.map((r, i) => <BuildingCard key={i} i={i} data={data} translatedData = {translatedData}/>)}
       </div>
     );
 }
 
 /**
  * 시설 선택 라디오 버튼
- * @param select 선택값
- * @param setSelect 선택값 설정 함수
+ * @param {string} select 시설 선택값
+ * @param {function} setSelect 시설 선택값 설정 함수
+ * @param {object} translatedData 현재 언어
  */
 function BuildingRadio({select, setSelect, translatedData}){
+    //라디오 버튼 선택 적용
     const handleChange = (event) => {
         setSelect(event.target.value);
     };
-    return(
-        <Box sx={{ flexGrow: 1 }}>
-            <FormControl>
-            <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="식당"
-                name="radio-buttons-group"
-                onChange={handleChange}
+    return (
+      <Box sx={{ flexGrow: 1 }}>
+        <FormControl>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="식당"
+            name="radio-buttons-group"
+            onChange={handleChange}
+          >
+            <Grid
+                container
+                spacing={{ xs: 2, md: 3 }}
+                columns={{ xs: 4, md: 12 }}
             >
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, md: 12 }}>
-                <Grid item xs={2} md={4}>
-                    <FormControlLabel value="식당" control={<Radio />} label={translatedData.selects[0]} />
-                </Grid>
-                <Grid item xs={2} md={4}>
-                    <FormControlLabel value="카페" control={<Radio />} label={translatedData.selects[1]} />
-                </Grid>
-                <Grid item xs={2} md={4}>
-                    <FormControlLabel value="스터디 공간" control={<Radio />} label={translatedData.selects[2]} />
-                </Grid>
-                <Grid item xs={2} md={4}>
-                    <FormControlLabel value="ATM" control={<Radio />} label={translatedData.selects[3]} />
-                </Grid>
-                <Grid item xs={2} md={4}>
-                    <FormControlLabel value="편의점" control={<Radio />} label={translatedData.selects[4]} />
-                </Grid>
-                <Grid item xs={2} md={4}>
-                    <FormControlLabel value="편의시설" control={<Radio />} label={translatedData.selects[5]} />
-                </Grid>
-        </Grid>
-        </RadioGroup>
-            </FormControl>
-        </Box>
-    )
+              <Grid item xs={2} md={4}>
+                <FormControlLabel
+                    value="식당"
+                    control={<Radio />}
+                    label={translatedData.selects[0]}
+                />
+              </Grid>
+              <Grid item xs={2} md={4}>
+                <FormControlLabel
+                    value="카페"
+                    control={<Radio />}
+                    label={translatedData.selects[1]}
+                />
+              </Grid>
+              <Grid item xs={2} md={4}>
+                <FormControlLabel
+                    value="스터디 공간"
+                    control={<Radio />}
+                    label={translatedData.selects[2]}
+                />
+              </Grid>
+              <Grid item xs={2} md={4}>
+                <FormControlLabel
+                    value="ATM"
+                    control={<Radio />}
+                    label={translatedData.selects[3]}
+                />
+              </Grid>
+              <Grid item xs={2} md={4}>
+                <FormControlLabel
+                    value="편의점"
+                    control={<Radio />}
+                    label={translatedData.selects[4]}
+                />
+              </Grid>
+              <Grid item xs={2} md={4}>
+                <FormControlLabel
+                    value="편의시설"
+                    control={<Radio />}
+                    label={translatedData.selects[5]}
+                />
+              </Grid>
+            </Grid>
+          </RadioGroup>
+        </FormControl>
+      </Box>
+    );
 }
 
 /**
  * 건물 시설 정보 카드
- * @param i data 반복 인덱스
- * @param data 건물 시설 정보
- * @returns 
+ * @param {number} i 반복 인덱스
+ * @param {object} data 건물 시설 정보
  */
 function BuildingCard({i, data, translatedData}){
-    console.log(translatedData)
     return(
             <div className="mealCard">
                 <div className="mealDetail">
@@ -151,6 +183,5 @@ function BuildingCard({i, data, translatedData}){
             </div>
     )
 }
-
 
 export default Building;

@@ -3,9 +3,14 @@ import '../css/SchoolSchedule.css'
 import axios from 'axios'
 import ModalForCalendar from '../components/ModalForCalendar'
 
+/**
+ * @returns 학사일정 페이지
+ */
 const SchoolSchedule = () => {
-    const [data,setData]=useState([])
+
+    const [data,setData] = useState([]);//학사 일정 데이터
     
+    // 학사 일정 데이터 요청
     useEffect(() => {
         axios.post("http://localhost:8080/calender", {}, {
             params:{
@@ -21,9 +26,7 @@ const SchoolSchedule = () => {
 
     return (
         <div className='container'>
-            {data.map((month)=>
-            <ModalForCalendar month={month}/>
-            )}
+            {data.map((month)=><ModalForCalendar month={month}/>)}
         </div>
     )
 }

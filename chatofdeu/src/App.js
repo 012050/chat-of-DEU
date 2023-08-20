@@ -17,8 +17,13 @@ import SchoolSchedule from "./page/SchoolSchedule";
 
 
 function App() {
-    let [nav, setNav] = useState(0);
-    const languages = [
+    let [nav, setNav] = useState(0); //하단 네비게이션 바
+
+    let language = useSelector((state) => state.language.value); //선택 언어
+    let dispatch = useDispatch(); //redux dispatch
+
+    //텍스트 언어 데이터
+    const languages = [ 
         {
             country: "ko",
             title:[
@@ -73,41 +78,28 @@ function App() {
         },
     ]
 
-    let language = useSelector((state) => state.language.value); //언어 정보
-    let dispatch = useDispatch();
+    const [selectedLanguage, setSelectedLanguage] = useState(languages[0]); //기본값: 한국어
 
-
-    const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
-    const languageSelection=(lang)=>{
-        dispatch(setLanguage(lang.code));
-        // setLanguage(lang.code)
-        const number = languages.findIndex((element => element.country === lang.code))
-        console.log(lang.code);
-        setSelectedLanguage(languages[number])
-    }
-    let theme = createTheme({
+    let theme = createTheme({ //색상 테마
         palette: {
             primary: {
-                main: '#303030', // 원하는 주 색상을 지정합니다.
+                main: '#303030', // 주 색상
             },
         },
     });
-
-    // useEffect(()=>{
-    //     const number = languages.findIndex((element => element.country === language))
-    //     setSelectedLanguage(languages[number])
-    // },[language])
 
     return (
         <div className="App">
             <ThemeProvider theme={theme}>
                 <Header languageSelection={languageSelection}/>
+
+                {/* 하단 네비게이션 바 */}
                 <BottomNavigation
                     className="navBar"
                     showLabels
                     value={nav}
                     onChange={(event, newValue) => {
-                        setNav(newValue);
+                        setNav(newValue); //하단 네비게이션 바 설정
                     }}
                 >
                     <BottomNavigationAction label={selectedLanguage.title[0]} component={Link} to="/" color="primary" />
@@ -115,15 +107,28 @@ function App() {
                     <BottomNavigationAction label={selectedLanguage.title[2]} component={Link} to="/translation" color="primary" />
                     <BottomNavigationAction label={selectedLanguage.title[3]} component={Link} to="/calendar" color="primary" />
                 </BottomNavigation>
+
+                {/* 페이지 라우팅 */}
                 <Routes>
-                    <Route path="/" element={<Menu language={language}/>} />
+                    <Route path="/" element={<Menu/>} />
                     <Route path="/building" element={<Building/>} />
                     <Route path="/translation" element={<Translation/>} />
                     <Route path="/calendar" element={<SchoolSchedule/>} />
                 </Routes>
+                
             </ThemeProvider>
         </div>
     );
+
+/**
+ * 언어 선택
+ * @param {lang} lang 선택 언어
+ */
+    function languageSelection(lang){
+        dispatch(setLanguage(lang.code));
+        const number = languages.findIndex((element => element.country === lang.code))
+        setSelectedLanguage(languages[number])
+    }
 }
 
 export default App;

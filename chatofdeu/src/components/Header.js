@@ -2,7 +2,9 @@ import React from 'react'
 import LanguageToggle from './LanguageToggle'
 import '../css/Header.css'
 
-
+/**
+ * @returns 헤더
+ */
 const Header = (props) => {
     return (
         <div className='header-container'>
