@@ -2,6 +2,8 @@
 
 DF&S(Deu Food & School)は大学生により良い学校生活を提供するためのサービスです。 学生が実際によくチェックする情報を便利に確認できます。 また、外国語をサポートすることで、海外交換留学生が東義大学に早く慣れるように支援します。
 
+<br>
+
 <thead>
     <tr>
         <td><img src="https://github.com/thelight0804/SUMMER-HACK/assets/69424845/63c887a4-fefb-4628-91f3-d5ff9d88306b" width="20%"></td>
