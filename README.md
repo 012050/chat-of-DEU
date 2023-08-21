@@ -3,8 +3,8 @@ DF&S(Deu Food & School)은 대학생들에게 더 나은 학교 생활을 제공
 
 <thead>
     <tr>
-        <td><img src="https://github.com/thelight0804/SUMMER-HACK/assets/69424845/63c887a4-fefb-4628-91f3-d5ff9d88306b" width="20%" height="20%"></td>
-        <td><img src="https://github.com/thelight0804/SUMMER-HACK/assets/69424845/7bbadb61-e89e-4580-8eac-b5d5c2f6e001" width="20%" height="20%"></td>
+        <td><img src="https://github.com/thelight0804/SUMMER-HACK/assets/69424845/63c887a4-fefb-4628-91f3-d5ff9d88306b" width="20%"></td>
+        <td><img src="https://github.com/thelight0804/SUMMER-HACK/assets/69424845/7bbadb61-e89e-4580-8eac-b5d5c2f6e001" width="20%"></td>
     </tr>
 </thead>
 
